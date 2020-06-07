@@ -13,6 +13,6 @@ See also dockerhub tags page: https://hub.docker.com/r/hiiiide/fluentd-ds-cloudl
 
 ## Image versions
 
-- `latest`
+- `v0.0.1`, `latest`
   - fluentd: 1.7.4
   - fluent-plugin-google-cloud: 0.8.5
