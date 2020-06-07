@@ -1,4 +1,4 @@
-# docker-fluentd-cloudlogging
+# docker-fluentd-ds-cloudlogging
 
 To forward to GCP Cloud Logging as a Daemonset. It's inspired to [fluent/fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset)
 
