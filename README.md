@@ -11,3 +11,8 @@ To forward to GCP Cloud Logging as a Daemonset. It's inspired to [fluent/fluentd
 
 See also dockerhub tags page: https://hub.docker.com/r/hiiiide/fluentd-ds-cloudlogging/tags
 
+## Image versions
+
+- `latest`
+  - fluentd: 1.7.4
+  - fluent-plugin-google-cloud: 0.8.5
