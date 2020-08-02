@@ -1,0 +1,81 @@
+# Based on:
+# https://github.com/fluent/fluentd-kubernetes-daemonset/blob/master/fluentd-daemonset-forward.yaml
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: fluentd-logging
+      version: v1
+  template:
+    metadata:
+      labels:
+        k8s-app: fluentd-logging
+        version: v1
+    spec:
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        image: hiiiide/fluentd-ds-cloudlogging:0.0.1
+        env:
+          - name: FLUENTD_FOWARD_HOST
+            valueFrom:
+              secretKeyRef:
+                name: fluentd-secret
+                key: foward-host
+          - name: FLUENTD_FOWARD_PORT
+            valueFrom:
+              secretKeyRef:
+                name: fluentd-secret
+                key: foward-port
+          - name: FLUENTD_GCP_PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: fluentd-secret
+                key: gcp-project-id
+          - name: FLUENTD_OPT
+            value: ""
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: config-volume
+          mountPath: /fluentd/etc
+        - name: google-auth-volume
+          mountPath: /etc/google/auth
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: config-volume
+        configMap:
+          name: fluentd-config
+      - name: google-auth-volume
+        secret:
+          secretName: fluentd-secret
+          items:
+          - key: gcp-credentials
+            path: application_default_credentials.json
+            mode: 0400
