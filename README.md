@@ -16,7 +16,7 @@ See also dockerhub tags page: https://hub.docker.com/r/hiiiide/fluentd-ds-cloudl
 ### 1. Configure Agent permissions
 
 ```
-https://raw.githubusercontent.com/hiiiide/docker-fluentd-ds-cloudlogging/master/manifests/rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/hiiiide/docker-fluentd-ds-cloudlogging/master/manifests/rbac.yaml
 ```
 
 ### 2. Create Secret
@@ -46,7 +46,7 @@ https://gist.github.com/hiiiide/81cde8544b713f72859e25283c25ee6a
 ### 4. Apply DaemonSet
 
 ```
-https://raw.githubusercontent.com/hiiiide/docker-fluentd-ds-cloudlogging/master/manifests/daemonset.yaml
+kubectl apply -f https://raw.githubusercontent.com/hiiiide/docker-fluentd-ds-cloudlogging/master/manifests/daemonset.yaml
 ```
 
 ## Image versions
