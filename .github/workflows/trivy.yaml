@@ -1,0 +1,15 @@
+name: Vulnerability Scan
+on:
+  schedule:
+    - cron: '0 2 * * *'
+jobs:
+  scan:
+    name: Daily Vulnerability Scan
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Pull docker image
+        run: docker pull hiiiide/fluentd-ds-cloudlogging:latest
+      - uses: homoluctus/gitrivy@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image: hiiiide/fluentd-ds-cloudlogging:latest
