@@ -28,16 +28,6 @@ spec:
       - name: fluentd
         image: hiiiide/fluentd-ds-cloudlogging:0.0.1
         env:
-          - name: FLUENTD_FOWARD_HOST
-            valueFrom:
-              secretKeyRef:
-                name: fluentd-secret
-                key: foward-host
-          - name: FLUENTD_FOWARD_PORT
-            valueFrom:
-              secretKeyRef:
-                name: fluentd-secret
-                key: foward-port
           - name: FLUENTD_GCP_PROJECT_ID
             valueFrom:
               secretKeyRef:

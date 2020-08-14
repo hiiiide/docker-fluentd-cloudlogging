@@ -31,8 +31,6 @@ metadata:
   namespace: kube-system
 type: Opaque
 data:
-  foward-host: <ENCODED_BASE64_FOWARD_HOST>
-  foward-port: <ENCODED_BASE64_FOWARD_PORT>
   gcp-project-id: <ENCODED_BASE64_GCP_PROJECT_ID>
   gcp-credentials: <ENCODED_BASE64_GCP_CREDENTIALS>
 ```
