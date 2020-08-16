@@ -1,7 +1,7 @@
 name: Vulnerability Scan
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 1 * *'
 jobs:
   scan:
     name: Daily Vulnerability Scan
